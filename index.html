@@ -195,7 +195,7 @@
 
 
 <!-- ==========SKILLS ============= -->
-     <section>
+     <section id="skills">
         <div class="main pt-5">
             <section>
                 <div class="container-fluid px-3">
@@ -372,6 +372,7 @@
      </section>
 
 
+     <h2> </h2><h2><span id="visitCountDisplay">   </span></h2> 
 
 
    <!-- Your HTML content goes here -->
@@ -387,7 +388,37 @@
 <script src="assets/js/app.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6D61F5TL4"></script>
 
+<script>
+    // Function to increment and update visit count
+function updateVisitCount() {
+    // Check if local storage is available
+    if (typeof(Storage) !== "undefined") {
+        // Retrieve current visit count from local storage
+        var visitCount = localStorage.getItem("visitCount");
 
+        // If visit count doesn't exist, initialize it to 1
+        if (!visitCount) {
+            visitCount = 1;
+        } else {
+            // Otherwise, increment the visit count
+            visitCount = parseInt(visitCount) + 1;
+        }
+
+        // Store the updated visit count in local storage
+        localStorage.setItem("visitCount", visitCount);
+
+        // Display the visit count on the webpage
+        document.getElementById("visitCountDisplay").textContent = visitCount;
+    } else {
+        // Local storage is not available, display an error message
+        console.log("Local storage is not supported.");
+    }
+}
+
+// Call the updateVisitCount function when the page loads
+window.addEventListener("load", updateVisitCount);
+
+</script>
 </body>
 
 </html>
